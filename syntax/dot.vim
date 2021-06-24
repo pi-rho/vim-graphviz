@@ -37,8 +37,18 @@ syn match   dotFloat   /\v<\d+[.]\d+>/
 syn match   dotNumber  /\v<\d+>/
 syn region  dotString  start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=dotStyle
 
+" Escape strings
+syn match   dotEscString /\v\\(N|G|E|T|H|L)/ containedin=dotString
+syn match   dotEscString /\v\\(n|l|r)/       containedin=dotString
+
+" Special chars
+syn match  dotKeyChar  "="
+syn match  dotKeyChar  ";"
+syn match  dotKeyChar  "->"
+syn match  dotKeyChar  "--"
+
 " General keywords
-syn keyword dotKeyword digraph node edge subgraph
+syn keyword dotKeyword graph digraph subgraph node edge strict
 
 " Cluster name
 syn match   dotCluster /\vsubgraph\s*\zscluster\S+/
@@ -214,11 +224,6 @@ syn keyword dotColorX11 wheat wheat1 wheat2 wheat3 wheat4
 syn keyword dotColorX11 peru silver teal violet white
 syn keyword dotColorX11 yellow yellow1 yellow2 yellow3 yellow4
 " }}}
-
-" Special chars
-syn match    dotKeyChar  "="
-syn match    dotKeyChar  ";"
-syn match    dotKeyChar  "->"
 
 " Define the default highlighting.
 " Only when an item doesn't have highlighting yet
