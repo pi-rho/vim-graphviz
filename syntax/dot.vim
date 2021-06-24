@@ -22,9 +22,9 @@ syn match   dotBrackErr   "]"
 syn match   dotBraceErr   "}"
 
 " Enclosing delimiters
-syn region  dotEncl transparent matchgroup=dotParEncl start="(" matchgroup=dotParEncl end=")" contains=ALLBUT,dotParErr
-syn region  dotEncl transparent matchgroup=dotBrackEncl start="\[" matchgroup=dotBrackEncl end="\]" contains=ALLBUT,dotBrackErr
-syn region  dotEncl transparent matchgroup=dotBraceEncl start="{" matchgroup=dotBraceEncl end="}" contains=ALLBUT,dotBraceErr
+syn region  dotEncl matchgroup=dotParEncl   start=/(/   matchgroup=dotParEncl   end=/)/  transparent contains=ALLBUT,dotParErr,dotIdentifier
+syn region  dotEncl matchgroup=dotBrackEncl start=/\[/  matchgroup=dotBrackEncl end=/\]/ transparent contains=ALLBUT,dotBrackErr,dotIdentifier
+syn region  dotEncl matchgroup=dotBraceEncl start=/{/   matchgroup=dotBraceEncl end=/}/  transparent contains=ALLBUT,dotBraceErr,dotIdentifier
 
 " Comments
 syn region  dotComment start="//" end="$" contains=dotComment,dotTodo
@@ -42,16 +42,14 @@ syn match   dotEscString /\v\\(N|G|E|T|H|L)/ containedin=dotString
 syn match   dotEscString /\v\\(n|l|r)/       containedin=dotString
 
 " Special chars
-syn match  dotKeyChar  "="
-syn match  dotKeyChar  ";"
-syn match  dotKeyChar  "->"
-syn match  dotKeyChar  "--"
+syn match   dotKeyChar  +\v([=;]|-\>|--)+
 
 " General keywords
-syn keyword dotKeyword graph digraph subgraph node edge strict
+syn region  dotGraph matchgroup=dotKeyword start=/\v<(di|sub)?graph>/ end=/\ze{/ transparent contains=dotCluster,dotIdentifier
+syn match   dotIdentifier /\v<\w+(:\w+)?>/                  contained containedin=dotGraph
+syn match   dotCluster    /\v<cluster_?\w+>/                contained containedin=dotGraph
 
-" Cluster name
-syn match   dotCluster /\vsubgraph\s*\zscluster\S+/
+syn keyword dotKeyword node edge strict
 
 " attributes
 syn keyword dotAttr bgcolor class color colorscheme comment fillcolor fontcolor fontname fontsize gradientangle href id
@@ -233,28 +231,30 @@ hi def link dotNumber    Number
 hi def link dotFloat     Float
 hi def link dotString    String
 hi def link dotEscString Type
-hi def link dotKeyChar   Label
+hi def link dotKeyChar   Comment
 
-hi def link dotBraceEncl Label
+hi def link dotBraceEncl Operator
 hi def link dotBraceErr  Error
 
-hi def link dotBrackEncl Label
+hi def link dotBrackEncl Operator
 hi def link dotBrackErr  Error
 
-hi def link dotParEncl   Keyword
+hi def link dotParEncl   Operator
 hi def link dotParErr    Error
 
 hi def link dotComment   Comment
 hi def link dotTodo      Todo
-hi def link dotKeyword   Statement
-hi def link dotCluster   Function
+
+hi def link dotKeyword    Statement
+hi def link dotIdentifier Special
+hi def link dotCluster    Type
 
 hi def link dotAttr      Type
 
-hi def link dotRank      Include
-hi def link dotShape     Constant
-hi def link dotStyle     Include
-hi def link dotColorX11  Include
+hi def link dotRank      Special
+hi def link dotShape     Special
+hi def link dotStyle     Special
+hi def link dotColorX11  Special
 
 let b:current_syntax = "dot"
 
