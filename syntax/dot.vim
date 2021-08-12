@@ -90,6 +90,9 @@ syn keyword dotShape terminator utr primersite restrictionsite fivepoverhang thr
 syn keyword dotShape assembly signature insulator ribosite rnastab proteasesite proteinstab rpromoter
 syn keyword dotShape rarrow larrow lpromoter
 
+" splines type: bool | string
+syn keyword dotSplines none curved ortho polyline spline
+
 " For nodes and edges (StyleType)
 syn keyword dotStyle dashed dotted solid invis bold
 
@@ -254,6 +257,7 @@ hi def link dotAttr      Type
 hi def link dotRank      Special
 hi def link dotShape     Special
 hi def link dotStyle     Special
+hi def link dotSplines   Special
 hi def link dotColorX11  Special
 
 let b:current_syntax = "dot"
