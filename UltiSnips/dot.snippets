@@ -1,0 +1,30 @@
+priority -50
+
+snippet dig "boilerplate digraph" b
+digraph ${1:DG} \{
+  overlap=scale
+  splines=spline
+  fontname="${2:dejavu sans}"
+  fontsize=8.0
+  node [fontname="$2",fontsize=10.0]
+  edge [fontname="$2",fontsize=8.0]
+
+  $0
+
+\} // digraph $1
+endsnippet
+
+snippet clus "cluster subgraph" b
+subgraph cluster_${1:name} \{
+  label="$1"
+
+  $0
+
+\} // cluster_$1
+endsnippet
+
+snippet ranksame "rank=same grouping" b
+\{ rank=same
+  $0
+\} // rank=same
+endsnippet
