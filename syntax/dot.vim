@@ -32,7 +32,7 @@ syn region  dotComment start="/\*" end="\*/" contains=dotComment,dotTodo
 syn keyword dotTodo contained TODO FIXME XXX
 
 " Data Types
-syn keyword dotBoolean true false
+syn keyword dotBoolean true false none
 syn match   dotFloat   /\v<\d+[.]\d+>/
 syn match   dotNumber  /\v<\d+>/
 syn region  dotString  start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=dotStyle
@@ -85,22 +85,25 @@ syn keyword dotRank min max source sink same
 syn keyword dotShape box polygon ellipse oval circle point egg triangle plaintext plain diamond trapezium
 syn keyword dotShape parallelogram house pentagon hexagon septagon octagon doublecircle doubleoctagon
 syn keyword dotShape tripleoctagon invtriangle invtrapezium invhouse Mdiamond Msquare Mcircle rect rectangle
-syn keyword dotShape square star none underline cylinder note tab folder box3d component promoter cds
+syn keyword dotShape square star underline cylinder note tab folder box3d component promoter cds
 syn keyword dotShape terminator utr primersite restrictionsite fivepoverhang threepoverhang noverhang
 syn keyword dotShape assembly signature insulator ribosite rnastab proteasesite proteinstab rpromoter
 syn keyword dotShape rarrow larrow lpromoter
 
 " splines type: bool | string
-syn keyword dotSplines none curved ortho polyline spline
+syn keyword dotSplines curved ortho polyline spline
 
 " For nodes and edges (StyleType)
-syn keyword dotStyle dashed dotted solid invis bold
+syn keyword dotStyleType dashed dotted solid invis bold
 
 " For edges only (StyleType)
-syn keyword dotStyle tapered
+syn keyword dotStyleType tapered
 
 " For nodes only (StyleType)
-syn keyword dotStyle filled striped wedged diagonals rounded
+syn keyword dotStyleType filled striped wedged diagonals rounded
+
+" For edges (dirType)
+syn keyword dotDirType forward back both
 
 " Named colors {{{
 syn keyword dotColorX11 AliceBlue BlanchedAlmond BlueViolet
@@ -256,7 +259,8 @@ hi def link dotAttr      Type
 
 hi def link dotRank      Special
 hi def link dotShape     Special
-hi def link dotStyle     Special
+hi def link dotStyleType Special
+hi def link dotDirType   Special
 hi def link dotSplines   Special
 hi def link dotColorX11  Special
 
