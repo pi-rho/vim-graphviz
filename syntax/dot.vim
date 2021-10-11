@@ -44,6 +44,10 @@ syn match   dotEscString /\v\\(n|l|r)/       containedin=dotString
 " Special chars
 syn match   dotKeyChar  +\v([=;]|-\>|--)+
 
+" For rankdir
+syn match   dotRankdirType /\v(<rankdir\s*[=]\s*)@<=<(TB|BT|LR|RL)>/
+syn match   dotOverlapType /\v(<overlap\s*[=]\s*)@<=(\d+:)?(true|false|voronoi|compress|vpsc|ipsep|prism|scale(xy)?||p?ortho(xy|_yx)?)\d*>/
+
 " General keywords
 syn region  dotGraph matchgroup=dotKeyword start=/\v<(di|sub)?graph>/ end=/\ze{/ transparent contains=dotCluster,dotIdentifier
 syn match   dotIdentifier /\v<\w+(:\w+)?>/                  contained containedin=dotGraph
@@ -232,37 +236,39 @@ syn keyword dotColorX11 yellow yellow1 yellow2 yellow3 yellow4
 " Define the default highlighting.
 " Only when an item doesn't have highlighting yet
 
-hi def link dotBoolean   Boolean
-hi def link dotNumber    Number
-hi def link dotFloat     Float
-hi def link dotString    String
-hi def link dotEscString Type
-hi def link dotKeyChar   Comment
+hi def link dotBoolean     Boolean
+hi def link dotNumber      Number
+hi def link dotFloat       Float
+hi def link dotString      String
+hi def link dotEscString   Type
+hi def link dotKeyChar     Comment
 
-hi def link dotBraceEncl Operator
-hi def link dotBraceErr  Error
+hi def link dotBraceEncl   Operator
+hi def link dotBraceErr    Error
 
-hi def link dotBrackEncl Operator
-hi def link dotBrackErr  Error
+hi def link dotBrackEncl   Operator
+hi def link dotBrackErr    Error
 
-hi def link dotParEncl   Operator
-hi def link dotParErr    Error
+hi def link dotParEncl     Operator
+hi def link dotParErr      Error
 
-hi def link dotComment   Comment
-hi def link dotTodo      Todo
+hi def link dotComment     Comment
+hi def link dotTodo        Todo
 
-hi def link dotKeyword    Statement
-hi def link dotIdentifier Special
-hi def link dotCluster    Type
+hi def link dotKeyword     Statement
+hi def link dotIdentifier  Special
+hi def link dotCluster     Type
 
-hi def link dotAttr      Type
+hi def link dotAttr        Type
 
-hi def link dotRank      Special
-hi def link dotShape     Special
-hi def link dotStyleType Special
-hi def link dotDirType   Special
-hi def link dotSplines   Special
-hi def link dotColorX11  Special
+hi def link dotRank        Special
+hi def link dotShape       Special
+hi def link dotRankdirType Special
+hi def link dotOverlapType Special
+hi def link dotStyleType   Special
+hi def link dotDirType     Special
+hi def link dotSplines     Special
+hi def link dotColorX11    Special
 
 let b:current_syntax = "dot"
 

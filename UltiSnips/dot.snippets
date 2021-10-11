@@ -2,12 +2,15 @@ priority -50
 
 snippet dig "boilerplate digraph" b
 digraph ${1:DG} \{
-  overlap=scale
+  rankdir=LR
+  overlap=prism
   splines=spline
   fontname="${2:dejavu sans}"
   fontsize=8.0
   node [fontname="$2",fontsize=10.0]
   edge [fontname="$2",fontsize=8.0]
+  // concentrate=true
+  // bgcolor=transparent   (nodes need to have a fillcolor)
 
   $0
 
