@@ -79,7 +79,7 @@ syn keyword dotAttr page pagedir quadtree quantum rankdir ranksep ratio remincro
 syn keyword dotAttr searchsize sep size smoothing splines start stylesheet truecolor viewport voro_margin xdotversion
 
 " attributes: Nodes
-syn keyword dotAttr distortion fixedsize group height image imagepos imagescale pin rects regular samplepoints shape shapefile
+syn keyword dotAttr area distortion fixedsize group height image imagepos imagescale pin rects regular samplepoints shape shapefile
 syn keyword dotAttr sides skew vertices width z
 
 " RankType values
